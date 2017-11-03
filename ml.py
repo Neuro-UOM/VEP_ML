@@ -124,6 +124,5 @@ def main():
     
     
     
-    x = raw_input("Wait for input: ")
 if __name__ == "__main__":
     main()
