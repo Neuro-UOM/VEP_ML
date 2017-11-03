@@ -2,7 +2,7 @@
 """
 Spyder Editor
 
-This is a temporary script file.
+preprocessing using highpass filter
 """
 import numpy as np
 import matplotlib.pyplot as plt

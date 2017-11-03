@@ -1,7 +1,3 @@
-"""
-running all algorithms for the collected eeg raw data
-"""
-
 import numpy as np
 
 from sklearn.svm import SVC
@@ -128,6 +124,9 @@ def main():
     
     
     
+<<<<<<< Updated upstream
+=======
     #x = raw_input("Wait for input: ")
+>>>>>>> Stashed changes
 if __name__ == "__main__":
     main()
