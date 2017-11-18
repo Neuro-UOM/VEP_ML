@@ -50,12 +50,13 @@ def main():
     blue_csv = ['raw_hansika_blue.csv', 'raw_heshan_blue.csv', 'raw_dinuka_blue.csv', 'raw_nadun_blue.csv', 'raw_ravindu_blue.csv']
     green_csv = ['raw_hansika_green.csv', 'raw_heshan_green.csv', 'raw_dinuka_green.csv', 'raw_nadun_green.csv', 'raw_ravindu_green.csv']
     red_csv = ['raw_hansika_red.csv', 'raw_heshan_red.csv', 'raw_dinuka_red.csv', 'raw_nadun_red.csv', 'raw_ravindu_red.csv']
-
+    
+    
     train_data = np.concatenate((   getArray(1, red_csv[0]),    getArray(1, red_csv[1]),    getArray(1, red_csv[2]),    
                                     getArray(2, green_csv[0]),  getArray(2, green_csv[1]),  getArray(2, green_csv[2]),  
-                                    #getArray(3, blue_csv[0]),   getArray(3, blue_csv[1]),   getArray(3, blue_csv[2])   
+                                    getArray(3, blue_csv[0]),   getArray(3, blue_csv[1]),   getArray(3, blue_csv[2])   
                                 ), axis=0)
-
+    
     test_data = np.concatenate((    getArray(1, red_csv[3]),    getArray(1, red_csv[4]), 
                                     getArray(2, green_csv[3]),  getArray(2, green_csv[4]),
                                     #getArray(3, blue_csv[3]),   getArray(3, blue_csv[4])
@@ -100,7 +101,7 @@ def main():
     '''
     
     classifiers = [ 
-                    SVC(decision_function_shape='ovo'), 
+                    #SVC(decision_function_shape='ovo'), 
                     #SVC(kernel='linear', C=1),
                     DecisionTreeClassifier(),
                     KNeighborsClassifier(n_neighbors=9),
@@ -116,12 +117,13 @@ def main():
         clf.fit(train_X, train_Y)
         #clf.fit(X_train, Y_train)                                                           
         print clf.classes_
-        print(clf.score(test_X, test_Y)) 
+        #print(clf.score(test_X, test_Y)) 
         #print(clf.score(X_test, Y_test))                                              
-        print(confusion_matrix(test_Y, clf.predict(test_X)))
+        #print(confusion_matrix(test_Y, clf.predict(test_X)))
         #print(confusion_matrix(Y_test, clf.predict(X_test))) 
  
-    
+        predicted = cross_val_predict(clf, train_X, train_Y, cv=10)
+        print("Cross-validation accuracy: ", metrics.accuracy_score(train_Y, predicted))
     
     
 if __name__ == "__main__":
